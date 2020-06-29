@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
+client.config = config;
 
 app.get('/', (request, response) => {
      response.sendStatus(200);
-});
-
-let listener = app.listen(process.env.PORT, () => {
-     console.log('Your app is currently listening on port: ' + listener.address().port);
 });
 
 const Discord = require('discord.js');
@@ -17,7 +14,7 @@ const figlet = require('figlet');
 require('dotenv').config();
 const fs = require('fs');
 
-roblox.setCookie(process.env.cookie).catch(async err => {
+roblox.setCookie(config.cookie).catch(async err => {
     console.log(chalk.red('Issue with logging in: ' + err));
 });
 
@@ -107,5 +104,4 @@ client.on('message', async (message) => {
     if(command == -1) return;
     commandlist[command].file.run(client, message, args);
 });
-
-client.login(process.env.token);
+client.login(config.token);
